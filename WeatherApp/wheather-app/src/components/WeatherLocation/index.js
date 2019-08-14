@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import convert from 'convert-units';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import './styles.css';
@@ -10,7 +11,7 @@ const location = "Barcelona,esp"
 const api_key = "bde2bd02d99f322b2a6cef566014529c";
 const url_base_weather ="http://api.openweathermap.org/data/2.5/weather";
 
-const api_weather = `${url_base_weather}?q=${location}&APPID=${api_key}`;
+const api_weather = `${url_base_weather}?q=${location}&APPID=${api_key}&units=metric`;
 
 const data = {
     temperature: 5,
@@ -18,7 +19,7 @@ const data = {
     humidity:10,
     wind: '10 m/s'
 }
-
+ 
 
 
 class WeatherLocation extends Component{
@@ -30,6 +31,9 @@ class WeatherLocation extends Component{
             data: data,
         };
     }
+     getTemp = kelvin => {
+         return Number(convert(kelvin).from("K").to("C").toFixed(2));
+     }
 
     getWeatherState = weather_data => {
         return SUN;
@@ -39,9 +43,10 @@ class WeatherLocation extends Component{
         const {humidity, temp} = weather_data.main;
         const {speed} = weather_data.wind;
         const weatherState = this.getWeatherState(weather_data);
+        const temperature = this.getTemp(temp);
         const data = {
             humidity,
-            temperature: temp,
+            temperature,
             weatherState,
             wind:`${speed} m/s`,
         }
@@ -54,6 +59,7 @@ class WeatherLocation extends Component{
         }).then(data => {
                 const newWeather = this.getData(data);
                 console.log(newWeather);
+                debugger;
                 this.setState({
                     data:newWeather
                 });
