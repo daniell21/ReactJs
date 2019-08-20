@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//importacion de react redux
+//el provider provee del store a los componentes que vivan en la aplicacion
 import {Provider} from 'react-redux';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+//importacion de la store
 import {store} from './store';
 
 ReactDOM.render(

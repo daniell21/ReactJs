@@ -8,8 +8,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-
-
     const cities =[
     "Barcelona,es",
     "Madrid,es",
@@ -17,8 +15,6 @@ import Typography from '@material-ui/core/Typography';
     "Oviedo,es",
     "Venezuela,ven",
     ];
-
-    
 
     class App extends Component{
 
